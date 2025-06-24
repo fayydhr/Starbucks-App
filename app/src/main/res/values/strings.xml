@@ -1,3 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">stk</string>
+    <string name="app_name">Starbucks_STK</string>
+
+    <string name="drink_1_name">Emerald Brew</string>
+    <string name="drink_1_price">Rp.52.000</string>
+
+    <string name="drink_2_name">Velvet Cloud Coffee</string>
+    <string name="drink_2_price">Rp.58.000</string>
+
+    <string name="drink_3_name">Mystic Mocha Delight</string>
+    <string name="drink_3_price">Rp.53.000</string>
+
+    <string name="drink_4_name">Crimson Berry Bliss</string>
+    <string name="drink_4_price">Rp.59.500</string> <string name="drink_5_name">Tropical Sunrise Frappe</string>
+    <string name="drink_5_price">Rp.67.000</string>
+
+    <string name="drink_6_name">Green Tea Serenity</string>
+    <string name="drink_6_price">Rp.57.500</string>
+
+    <string name="reward_1_title">Buy 1 Get 1 Free</string>
+    <string name="reward_1_description">
+        Enjoy double the delight with our Buy 1 Get 1 Free promo!
+    </string>
+
+    <string name="reward_2_title">Free Boba Milk Tea</string>
+    <string name="reward_2_description">
+        Dive into the refreshing world of Boba Milk Tea with our Free Boba Milk Tea promo!
+    </string>
+
+    <string name="reward_3_title">50% Discount of Red Velvet</string>
+    <string name="reward_3_description">
+        Treat yourself to a sweet surprise with our 50% Discount of Red Velvet promo!
+    </string>
+
 </resources>

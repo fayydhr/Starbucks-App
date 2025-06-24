@@ -1,7 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose") // Ensure this is present
 }
 
 android {
@@ -10,12 +10,15 @@ android {
 
     defaultConfig {
         applicationId = "com.example.stk"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -28,19 +31,27 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "2.0.0"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
-
+    // Core Android & Compose dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -49,11 +60,26 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Navigation dependencies (ensure these are present and correct)
+    // Removed hardcoded versions if they conflict with BOM or other dependencies.
+    // If you absolutely need specific older versions of UI/Material, you might need to adjust BOM or other dependencies.
+    // However, it's generally best to let BOM manage these.
+    // Let's remove the specific androidx.compose.ui:ui:1.6.8 and androidx.compose.material:material:1.6.8 as BOM should cover it.
+    // If issues arise after removal, we can re-evaluate.
+    implementation(libs.androidx.navigation.compose)
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.21.0-beta")
+
+    // TEST DEPENDENCIES - **CRUCIAL FIXES HERE**
+    testImplementation(libs.junit) // Standard JUnit
+    androidTestImplementation(libs.androidx.junit) // AndroidX JUnit for instrumented tests
+    androidTestImplementation(libs.androidx.espresso.core) // Espresso for UI testing
+    androidTestImplementation(platform(libs.androidx.compose.bom)) // BOM for Compose testing libraries
+    androidTestImplementation(libs.androidx.ui.test.junit4) // Compose UI test rules
+    debugImplementation(libs.androidx.ui.tooling) // Compose tooling for previews
+    debugImplementation(libs.androidx.ui.test.manifest) // Compose test manifest utility
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation("junit:junit:4.13.2")
+
 }
